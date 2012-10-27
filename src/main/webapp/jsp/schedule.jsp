@@ -1,10 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="hogs" uri="/WEB-INF/tag/HogsCustom.tld"%>
-<%@page import = "java.util.List"%>
-<%@page import = "com.acme.model.Game"%>
-<%@page import = "com.acme.database.GameDAO"%>
-<%@page import = "com.acme.database.GameDAOImpl"%>
-<%@page import = "com.acme.tag.SubstrTagHandler" %>
+
 
 <html>
 <body>
@@ -13,11 +9,6 @@
 <hogs:currentDate/>
 
 <table border = 1>
-<%
-	GameDAO gameDAO = new GameDAOImpl();
-	List<Game> gameList = gameDAO.getGames();
-	pageContext.setAttribute("gameList", gameList);	
-%>
 	<!--Headers-->
 	<tr>
 		<td><b>Week</b></td>
