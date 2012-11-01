@@ -5,7 +5,7 @@
 <html>
 <body>
 <h2><b>The 2012 Washington Redskins Schedule</b></h2>
-<hogs:substring input="Did this work" start="0" end = "10"/><br/>
+<hogs:substring input="Testing 123" start="0" end = "4"/><br/>
 <hogs:currentDate/>
 
 <table border = 1>

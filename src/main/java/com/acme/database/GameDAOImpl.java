@@ -14,25 +14,39 @@ import com.acme.model.Game;
 
 public class GameDAOImpl implements GameDAO {
 
-	private static String formatString = "MM/dd 'at' h:mm a z";
-	private static String formatStringNoTime = "MM/dd";
-
-
+	protected static String formatString = "MM/dd 'at' h:mm a z";
+	protected static String formatStringNoTime = "MM/dd";
+	
+	private String driverName;
+	private String url;
+	private String userName;
+	private String password;
+	
+	protected Connection connect(){
+		Connection c = null;
+		try {
+			Class.forName(driverName);
+			c = DriverManager.getConnection(url,userName,password);
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
 	@Override
 	public List<Game> getGames() {
 		SimpleDateFormat format = new SimpleDateFormat(formatString);
 		SimpleDateFormat formatNoTime = new SimpleDateFormat(formatStringNoTime);
-
-
 		List<Game>games = new ArrayList<Game>();
+		Connection c = connect();
+		Statement st;
+		if(c != null){
 		try {
-			Class.forName("org.sqlite.JDBC");
-			Connection c;
-			c = DriverManager.getConnection("jdbc:sqlite:C:\\Dev\\Databases\\hogs.db","","");
-			Statement st = c.createStatement();
+			st = c.createStatement();
 			String sql = "select * from schedule order by week asc";
 			ResultSet resultSet = st.executeQuery(sql);
-
 			while(resultSet.next()){
 				Game game = new Game();
 				game.setId(resultSet.getInt("id"));
@@ -48,19 +62,39 @@ public class GameDAOImpl implements GameDAO {
 				}else{
 					game.setDate(format.parse(resultSet.getString("date")));
 				}
-
-
 				games.add(game);
 			}
 			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		}
 		return games;
 	}
-
+	public String getDriverName() {
+		return driverName;
+	}
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }
