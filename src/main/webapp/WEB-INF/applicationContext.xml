@@ -16,4 +16,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="userName" value="${databaseUserName}"/>
 		<property name="password" value="${databasePassword}"/>
 	</bean>
+	
+	<bean name="starterDAO" class="com.acme.database.StarterDAOImpl">
+		<property name="driverName" value="${databaseDriverName}"/>
+		<property name="url" value="${databaseUrl}"/>
+		<property name="userName" value="${databaseUserName}"/>
+		<property name="password" value="${databasePassword}"/>
+	</bean>
 </beans>
