@@ -31,7 +31,7 @@ public class StarterController {
 		return starterDAO;
 	}
 
-	public void setGameDAO(StarterDAO starterDAO) {
+	public void setStarterDAO(StarterDAO starterDAO) {
 		this.starterDAO = starterDAO;
 	}
 

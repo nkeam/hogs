@@ -4,6 +4,7 @@
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
 			<value>/WEB-INF/application.properties</value>
@@ -11,10 +12,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	</bean>
 	
 	<bean name="gameDAO" class="com.acme.database.GameDAOImpl">
-		<property name="driverName" value="${databaseDriverName}"/>
-		<property name="url" value="${databaseUrl}"/>
-		<property name="userName" value="${databaseUserName}"/>
-		<property name="password" value="${databasePassword}"/>
+		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
 	<bean name="starterDAO" class="com.acme.database.StarterDAOImpl">
@@ -23,4 +21,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="userName" value="${databaseUserName}"/>
 		<property name="password" value="${databasePassword}"/>
 	</bean>
+	
+	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value = "${databaseDriverName}"/>
+		<property name="url" value="${databaseUrl}"/>
+		<property name="username" value="${databaseUserName}"/>
+		<property name="password" value="${databasePassword}"/>
+	</bean>
+	
+	
 </beans>
