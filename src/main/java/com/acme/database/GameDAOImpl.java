@@ -22,6 +22,18 @@ public class GameDAOImpl implements GameDAO {
 		logger.debug("sql: "+sql);
 		return select.query(sql, new GameMapper());
 	}
+	
+	//implementing a method from some interface:
+	@Override
+	public Game update(Game game){
+		JdbcTemplate template = new JdbcTemplate(dataSource);
+		String sql = "update schedule set homescore = ?, awayscore = ?, wl = ? where week = ?";
+		Object[] args = new Object[]{
+			game.getHomeScore(),game.getAwayScore(),game.getWinLoss(),game.getWeek()
+		};
+		template.update(sql, args);
+		return game;
+	}
 	public DataSource getDataSource() {
 		return dataSource;
 	}

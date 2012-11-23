@@ -15,4 +15,11 @@ public interface GameDAO {
 	 */
 	List<Game> getGames();
 	
+	/**
+	 * Updates game
+	 * @param game
+	 * @return
+	 */
+	Game update(Game game);
+	
 }

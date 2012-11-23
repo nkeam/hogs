@@ -1,8 +1,5 @@
 package com.acme.controller;
 
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,26 +11,28 @@ import org.springframework.web.servlet.ModelAndView;
 import com.acme.database.GameDAO;
 import com.acme.model.Game;
 
- 
-@Controller
-@RequestMapping("/schedule")
-public class ScheduleController {
+
+@Controller 
+@RequestMapping("/scheduleEdit")
+public class ScheduleEditController {
 	@Autowired
 	private GameDAO gameDAO;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String printWelcome(ModelMap model) {
-		List<Game> gameList = gameDAO.getGames();
-		model.addAttribute("gameList", gameList);
-		return "schedule";
+	public String showEdit(ModelMap model){
+		return "scheduleEdit";
 	}
-	/*
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView saveSchedule(@RequestParam("id") Integer id, @RequestParam("homeScore") String homeScore) {
-		//gameDAO.updateSchedule(id, homeScore, awayScore, winLoss);
+	public ModelAndView saveSchedule(@RequestParam("week") Integer week, @RequestParam("homeScore") Integer homeScore, @RequestParam("awayScore") Integer awayScore, @RequestParam("winLoss") String winLoss) {
+		Game game = new Game();
+		game.setWeek(week);
+		game.setHomeScore(homeScore);
+		game.setAwayScore(awayScore);
+		game.setWinLoss(winLoss);
+		gameDAO.update(game);
 		return new ModelAndView("redirect:schedule");
 	}
-	*/
 
 	public GameDAO getGameDAO() {
 		return gameDAO;
@@ -42,8 +41,4 @@ public class ScheduleController {
 	public void setGameDAO(GameDAO gameDAO) {
 		this.gameDAO = gameDAO;
 	}
-
-	
- 
 }
-

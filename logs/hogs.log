@@ -1,2 +1,8 @@
-22:49:26,799 TRACE GameDAOImpl:19 - GameDAOImpl.getGames
-22:49:26,808 DEBUG GameDAOImpl:22 - sql: select * from schedule order by week asc
+12:21:27,839 TRACE GameDAOImpl:19 - GameDAOImpl.getGames
+12:21:27,872 DEBUG GameDAOImpl:22 - sql: select * from schedule order by week asc
+12:22:17,257 TRACE GameDAOImpl:19 - GameDAOImpl.getGames
+12:22:17,258 DEBUG GameDAOImpl:22 - sql: select * from schedule order by week asc
+12:22:26,974 TRACE GameDAOImpl:19 - GameDAOImpl.getGames
+12:22:26,975 DEBUG GameDAOImpl:22 - sql: select * from schedule order by week asc
+12:25:48,788 TRACE GameDAOImpl:19 - GameDAOImpl.getGames
+12:25:48,791 DEBUG GameDAOImpl:22 - sql: select * from schedule order by week asc
