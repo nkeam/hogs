@@ -20,8 +20,8 @@
 		<td><b>Date and Time</b></td>
 	</tr>
 	<!--The Table-->
+	<c:forEach var="game" items="${gameList}">
 	<tr>
-		<c:forEach var="game" items="${gameList}">
 		<td><c:out value="${game.week}" /></td>
 		<td><c:out value="${game.homeTeam}" /></td>
 		<td><c:out value="${game.awayTeam}" /></td>	
@@ -41,6 +41,7 @@
 		<td><c:out value="${game.formattedDate}" /></td>
 	</tr>
 	</c:forEach>
+	
 </table>
 </body>
 </html>
